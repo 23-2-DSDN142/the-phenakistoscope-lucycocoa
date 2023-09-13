@@ -8,63 +8,45 @@ function setup_pScope(pScope){
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image_sequence("Heartwing","png",4);
   pScope.load_image("Arrow","png");
-  pScope.load_image("3","png");
-  pScope.load_image("z","png");
+  pScope.load_image("center","png");
 }
 
 function setup_layers(pScope){
 
-  //new PLayer(null, 	234	,153,	153);  //lets us draw the whole circle background, ignoring the boundaries
+  
 new PLayer(null,254	,240	,240);
 
-  var Heart_Wing = new PLayer(Heartwing);
-  Heart_Wing.mode(RING);
-  Heart_Wing.set_boundary (800,1000);
-  //var layer1 = new PLayer(faces);
-  //layer1.mode( RING );
-  //layer1.set_boundary( 800, 1000 );
+  var Wing = new PLayer(Heartwing);
+  Wing.mode(RING);
+  Wing.set_boundary (800,1000);
 
-  var layer2 = new PLayer(heart_f);
-  layer2.mode(SWIRL(7));
-  layer2.set_boundary(700,900);
+  var Filledheart = new PLayer(heart_f);
+  Filledheart.mode(SWIRL(7));
+  Filledheart.set_boundary(700,900);
 
-  var layer3 = new PLayer(arrow);
-  layer3.mode(SWIRL(3));
-  layer3.set_boundary(200,800)
+  var Arrow = new PLayer(arrow);
+  Arrow.mode(SWIRL(3));
+  Arrow.set_boundary(200,800)
 
-  var layer4 = new PLayer(heart_sequence);
-  layer4.mode(RING);
-  layer4.set_boundary(0,1000);
+  var centre = new PLayer(center);
+  centre.mode(RING);
+  centre.set_boundary(0,1000);
 
-  var layer5 = new PLayer(center);
-  layer5.mode(RING);
-  layer5.set_boundary(0,1000);
-
-
-  var layer7 = new PLayer(twinkle);
-  layer7.mode(SWIRL(10))
-  layer7.set_boundary(400,1000);
+  var effect = new PLayer(twinkle);
+  effect.mode(SWIRL(10))
+  effect.set_boundary(400,1000);
 }
 
 function Heartwing (x, y, animation, pScope){
+
 scale(0.6)
-  pScope.draw_image_from_sequence("Heartwing",353,1350,animation.frame);
+
+pScope.draw_image_from_sequence("Heartwing",353,1350,animation.frame);
 
 fill(	234,153,153)
 
 
 }
-//function faces(x, y, animation, pScope){
-  
-  //scale(animation.frame*30);
-
-  //ellipse(0,0,50,50); // draw head
-  //fill(30);
-  //ellipse(-10,-10,10,10); //draw eye
-  //ellipse(10,-10,10,10); // draw eye
-  //arc(0,10,20,10,0,180); // draw mouth
-
-//}
 
 
   function heart_f(x, y, animation, pScope){
@@ -130,45 +112,32 @@ fill(	234,153,153)
     
     
     
-    
-    
-    // use this on firework//add lerp color
+  
   }
 
   function arrow(x, y, animation, pScope){
-    //stroke(241,	194,	50)
-    //fill(	241,	194,	50)
+    
     scale(animation.wave(0.0001))
-    //ellipse(-40,-200,70,70)
+   
     pScope.draw_image("Arrow",x,y);
   }
 
-  function heart_sequence(x,y,animation,pScope){
-    scale(0.33)
-  pScope.draw_image("3",0,0,animation.frame);
+
    
-  }
   function center(x,y,animation,pScope){
     scale(4)
-    pScope.draw_image("z",x,y,animation.frame*50);
+    pScope.draw_image("center",x,y,animation.frame*50);
    
   }
 
 
-function twinkle(x, y, animation, pScope){
+ function twinkle(x, y, animation, pScope){
 
-  // this is how you set up a background for a specific layer
-  //let angleOffset = (360 / SLICE_COUNT) / 2
-  //let backgroundArcStart = 270 - angleOffset;
-  //let backgroundArcEnd = 270 + angleOffset;
-
-  //fill(66, 135, 245)
-  //arc(x,y,800,800,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
   stroke(	234	,153	,153)
-  fill(	255,	229,	153)
+
   scale(animation.wave(2))
+
   rotate(1000*animation.frame)
-  //ellipse(190,-600-animation.wave(1)*70,30,30) // .wave is a cosine wave btw
     
   fill(	234,153,153)
   rect(-2,-200,5,5)
